@@ -1,0 +1,2 @@
+# flint
+figma linting plugin
