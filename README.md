@@ -21,10 +21,15 @@ figma linting plugin
 - naming conflicts
   - screen conflict
   - component conflict
+- Hidden layers warning
+- Overlapped layers warning
 
 
 **Visual Linting**
-
+- aesthetic rate score
+- usability & reachability score
+- eye tracking score
+- reference score
 
 
 
