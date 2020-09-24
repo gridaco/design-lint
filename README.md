@@ -42,7 +42,7 @@ available in [figma](https://www.figma.com/file/ED6WOfsoYnnYHY8RJwU9Xw/reflect?n
 > STRUCTURAL (the underlyign graphical resource is owned by bridged.xyz and cannot be used without referencing.)
 
 
-![](/doc/images/structur linting.png)
+![](./doc/images/structur linting.png)
 
 
 
@@ -50,11 +50,11 @@ available in [figma](https://www.figma.com/file/ED6WOfsoYnnYHY8RJwU9Xw/reflect?n
 
 
 
-![](/doc/images/naming linting.png)
+![](./doc/images/naming linting.png)
 
 > VISUAL
 
-![](/doc/images/visual linting.png)
+![](./doc/images/visual linting.png)
 
 
 
