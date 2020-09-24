@@ -33,10 +33,32 @@ figma linting plugin
 
 
 
+
+
+## Linting standards
+
+> STRUCTURAL (the underlyign graphical resource is owned by bridged.xyz and cannot be used without referencing.)
+
+![](./doc/images/structur linting.png)
+
+> NAMING
+
+
+
+![](./doc/images/naming linting.png)
+
+> VISUAL
+
+![](./doc/images/visual linting.png)
+
+
+
+
+
 ## References
-https://github.com/destefanis/design-lint
-https://www.figma.com/community/plugin/801195587640428208/Design-Lint
-https://lintyour.design/
+- https://github.com/destefanis/design-lint
+- https://www.figma.com/community/plugin/801195587640428208/Design-Lint
+- https://lintyour.design/
 
 
 
