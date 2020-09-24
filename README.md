@@ -1,6 +1,8 @@
-# flint
-figma linting plugin
+# lint
+figma linting plugin & design lint engine
 
+## Rules & Documentation
+available in [figma](https://www.figma.com/file/ED6WOfsoYnnYHY8RJwU9Xw/reflect?node-id=50%3A0)
 
 ## Lints
 - Structure Lint
@@ -44,10 +46,7 @@ https://lintyour.design/
 
 
 
-# Originally forked from design-lint
-
-
-
+> Originally forked from design-lint under MIT License
 
 
 # Design Lint
