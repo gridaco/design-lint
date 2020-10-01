@@ -17,11 +17,17 @@ export const defaultFrameName = [
     "Android",
     "Desktop"
 ]
-export default function (name) {
+export default function DefaultNameLint(name) {
     defaultFrameName.map(
         s => {
-            name.match(RegExp(s))
-            throw new FigmaDefaultNameInNameError(name, name);
+            if(name.match(name.match(s)))
+                throw new FigmaDefaultNameInNameError(name);
+        }
+    )
+    defaultShapeName.map(
+        s => {
+            if(name.match(name.match(s)))
+                throw new FigmaDefaultNameInNameError(name);
         }
     )
 }

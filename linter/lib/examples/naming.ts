@@ -1,6 +1,11 @@
 import { naming } from "..";
 
-const goodNamings = [];
+const goodNamings = [
+    "login",
+    "title",
+    "99",
+
+];
 const badNamings = [
     "iPhone XS - 2",
     "Rectangle 3",
@@ -10,7 +15,27 @@ const badNamings = [
 
 
 export function test() {
-    badNamings.forEach((val, i) => {
-        naming(val)
+    var successful = [];
+    var fail = [];
+
+    goodNamings.forEach((val, i) => {
+        try{
+            naming(val)
+            successful.push(val)
+        }catch (e) {
+            fail.push(e)
+        }
     })
+    badNamings.forEach((val, i) => {
+        try{
+            naming(val)
+            successful.push(val)
+        }catch (e) {
+            fail.push(e)
+        }
+    })
+    return {
+        "successful" : successful,
+        "fail" : fail
+    }
 }

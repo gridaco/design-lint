@@ -7,7 +7,7 @@ export class InvalidCharacterInNameError extends ReflectLintFeedback {
 }
 
 export class FigmaDefaultNameInNameError extends ReflectLintFeedback {
-    constructor(given: string, invalidToken: string) {
-        super(`the given name ${given} contains invalid token ${invalidToken}.`);
+    constructor(given: string) {
+        super(`the given name ${given} is default name. Please make a different name.`);
     }
 }
