@@ -1,16 +1,43 @@
 import { naming } from "..";
 
-const goodNamings = [];
+const goodNamings = [
+    "login",
+    "title",
+    "99",
+
+];
 const badNamings = [
-    "iPhone XS - 2",
+    "iPhone 11 - 2",
+    "iPhone 11 Pro - 11",
     "Rectangle 3",
-    "Copy of text 2"
+    "icon 2",
+    "iPhone SE - 121421",
 ];
 
 
 
 export function test() {
-    badNamings.forEach((val, i) => {
-        naming(val)
+    var successful = [];
+    var fail = [];
+
+    goodNamings.forEach((val, i) => {
+        try{
+            naming(val)
+            successful.push(val)
+        }catch (e) {
+            fail.push(e)
+        }
     })
+    badNamings.forEach((val, i) => {
+        try{
+            naming(val)
+            successful.push(val)
+        }catch (e) {
+            fail.push(e)
+        }
+    })
+    return {
+        "successful" : successful,
+        "fail" : fail
+    }
 }
