@@ -7,9 +7,11 @@ const goodNamings = [
 
 ];
 const badNamings = [
-    "iPhone XS - 2",
+    "iPhone 11 - 2",
+    "iPhone 11 Pro - 11",
     "Rectangle 3",
-    "Copy of text 2"
+    "icon 2",
+    "iPhone SE - 121421",
 ];
 
 

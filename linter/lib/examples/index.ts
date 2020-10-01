@@ -7,7 +7,7 @@ function runAllExamples() {
     console.log("Number of fail data  : " + (nameLintTestResult.fail.length))
 
     nameLintTestResult.fail.forEach(s=>{
-        console.log(s)
+        console.log(s.message)
     })
 }
 
