@@ -13,7 +13,7 @@
     "@figma/plugin-typings": "^1.16.1"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": "https://github.com/bridgedxyz/lint/linter",
   "author": "bridged.xyz - softmarshmallow",
