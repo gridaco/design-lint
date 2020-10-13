@@ -1,5 +1,7 @@
 # lint
-figma linting plugin & design lint engine
+> lint is currently being developed for [assistant](https://github.com/bridgedxyz/assistant/tree/master/packages), it's dependancy requires this repository to run under /assistant/packages/lint. which you can clone this repository directly, but not stable branches might have some incompatibility among the dependencies.
+
+*reflect's linting plugin & design lint engine*
 
 ## Rules & Documentation
 available in [figma](https://www.figma.com/file/ED6WOfsoYnnYHY8RJwU9Xw/reflect?node-id=50%3A0)
