@@ -4,9 +4,26 @@ figma linting plugin & design lint engine
 ## Rules & Documentation
 available in [figma](https://www.figma.com/file/ED6WOfsoYnnYHY8RJwU9Xw/reflect?node-id=50%3A0)
 
+## Installation
+
+```sh
+yarn add @reflect.bridged.xyz/linter
+```
+
+
+
+## Example
+
+> example plugin for figma available [here](./example/plugin)
+
+
+
 ## Lints
 - Structure Lint
 - Visual Lint
+- Name Linting
+
+
 
 
 ## Features
