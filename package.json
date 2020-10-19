@@ -3,14 +3,15 @@
   "version": "0.0.1",
   "description": "linter for reflect",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
+    "postinstall": "tsc",
     "examples": "ts-node lib/examples",
     "prepublish": "tsc"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
-    "@figma/plugin-typings": "^1.17.1"
+    "@figma/plugin-typings": "^1.17.1",
+    "typescript": "^3.4.3"
   },
   "files": [
     "dist"
