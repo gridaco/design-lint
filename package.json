@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
-    "@figma/plugin-typings": "^1.16.1"
+    "@figma/plugin-typings": "^1.17.1"
   },
   "files": [
     "dist"
