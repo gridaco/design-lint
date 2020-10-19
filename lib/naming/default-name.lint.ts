@@ -1,15 +1,17 @@
-import {FigmaDefaultNameInNameError, InvalidCharacterInNameError} from "../feedbacks/assert";
+import { ReflectLintFeedback } from "../feedbacks";
+import { DefaultNameUsageWarning, InvalidCharacterInNameError } from "../feedbacks/assert";
 
-export const defaultShapeName = [
+export const DEFAULT_SHAPE_NAME_PATTERNS = [
     "Rectangle",
     "Line",
     "Polygon",
     "Star",
     "Arrow",
     "icon",
-
+    "Frame",
 ]
-export const defaultFrameName = [
+export const DEFAULT_SCREEN_NAME_PATTERNS = [
+
     "iPhone 11 Pro Max",
     "iPhone 11 Pro",
     "iPhone 11",
@@ -36,30 +38,36 @@ export const defaultFrameName = [
     "Apple Watch 40mm",
     "Apple Watch 38mm",
 
+    //#region paper
     "A4",
     "A5",
     "A6",
     "Letter",
     "Tabloid",
+    //#endregion
 
     "Twitter Post",
     "Twitter Header",
 
-    //TODO:: ADD ECT
+    //TODO:: Add more
 ]
-export default function DefaultNameLint(name) {
-    defaultFrameName.map(
-        s => {
-            var regExp = "^"+ s + " - " + "[0-9]*$"
-            if(name.match(RegExp(regExp)))
-                throw new FigmaDefaultNameInNameError(name);
-        }
-    )
-    defaultShapeName.map(
-        s => {
-            var regExp = "^"+ s +" " + "[0-9]*$"
-            if(name.match(RegExp(regExp)))
-                throw new FigmaDefaultNameInNameError(name);
-        }
-    )
+
+const DEFAULT_NAME_PATTERNS = [...DEFAULT_SHAPE_NAME_PATTERNS, ...DEFAULT_SCREEN_NAME_PATTERNS]
+
+/**
+ * "Rect" - no warn
+ * "Rect - 1" - warn
+ * "Frame" - no warn
+ * "Frame - 1" warn
+ * "iPhone" - warn
+ * "iPhone - 1" - warn
+ * @param name the name of the node
+ */
+export default function lintDefaultNameUsage(name: string): ReflectLintFeedback {
+    for (const pattern of DEFAULT_NAME_PATTERNS) {
+        // TODO - this regex cannot check for various logic for screen naming.
+        var regExp = "^" + pattern + " - " + "[0-9]*$"
+        if (name.match(RegExp(regExp)))
+            return new DefaultNameUsageWarning(name);
+    }
 }

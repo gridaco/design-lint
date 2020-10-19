@@ -7,16 +7,12 @@ export function lintMissingConstraints(node: SceneNode): Lint {
     const containerWidth = node.width
     const containerHeight = node.height
 
-
     if (node.type == "FRAME" || node.type == "GROUP" || node.type == "COMPONENT" || node.type == "INSTANCE") {
 
         for (const childNode of node.children) {
             const validTarget = childNode.visible && !childNode.locked
             if (validTarget) {
 
-                // childNode.constrainProportions
-                // childNode.layoutAlign
-                // childNode.absoluteTransform
                 const relX = childNode.x
                 const relXCenter = relX + (childNode.width / 2)
                 const relY = childNode.y
@@ -28,7 +24,6 @@ export function lintMissingConstraints(node: SceneNode): Lint {
                     containerWidth: containerWidth,
                     width: childNode.width
                 })
-                console.log(childNode.name, lcr)
 
                 // INSTANCE, COMPONENT, FRAME are supported. GROUP support is blocked by https://github.com/figma/plugin-typings/issues/9
                 if (childNode.type == "INSTANCE" || childNode.type == "COMPONENT" || childNode.type == "FRAME" || childNode.type == "RECTANGLE") {
