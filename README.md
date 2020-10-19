@@ -26,6 +26,8 @@ yarn add @reflect.bridged.xyz/linter
 - Name Linting
 
 
+## Docs
+[linting specification docs at notion](https://www.notion.so/bridgedxyz/lint-8d231e26f2394dd984594d6de32d47c2)
 
 
 ## Features
@@ -65,15 +67,15 @@ yarn add @reflect.bridged.xyz/linter
 
 
 
-![structure-linting](./doc/images/structure-linting.png)
+![structure-linting](./docs/images/structure-linting.png)
 
 
 
 
 
-![naming-linting](./doc/images/naming-linting.png)
+![naming-linting](./docs/images/naming-linting.png)
 
-![visual-linting](./doc/images/visual-linting.png)
+![visual-linting](./docs/images/visual-linting.png)
 
 
 
