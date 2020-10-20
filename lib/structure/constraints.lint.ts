@@ -1,9 +1,14 @@
+import { LintResults, ReflectLintFeedback } from "../feedbacks"
+import { MissingConstraintsWarning } from "../feedbacks/warn"
+
 /**
  * Iterates throught the children, finds the missing constraints. It does not inspect the givven node itself.
  * Again, It inspects the children of the givven node, not the node itself.
  * @param node the target node to be inspected. node should be Group or Frame to be inspected.
  */
-export function lintMissingConstraints(node: SceneNode): Lint {
+export function lintMissingConstraints(node: SceneNode): LintResults {
+    const lints: Array<ReflectLintFeedback> = []
+
     const containerWidth = node.width
     const containerHeight = node.height
 
@@ -31,27 +36,36 @@ export function lintMissingConstraints(node: SceneNode): Lint {
                     switch (lcr) {
                         case "Left":
                             if (!(xAlign == "Left")) {
-                                console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Left, but the constraint is set to ${xAlign}. You might want to set it to Left.`)
+                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                lints.push(warn)
+                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Left, but the constraint is set to ${xAlign}. You might want to set it to Left.`)
                             }
                             break;
                         case "Right":
                             if (!(xAlign == "Right")) {
-                                console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Right, but the constraint is set to ${xAlign}. You might want to set it to Right.`)
+                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                lints.push(warn)
+                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Right, but the constraint is set to ${xAlign}. You might want to set it to Right.`)
                             }
                             break;
                         case "Center":
                             if (!(xAlign == "Center" || xAlign == "Stretch")) {
-                                console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Center, but the constraint is set to ${xAlign}. You might want to set it to Center.`)
+                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                lints.push(warn)
+                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Center, but the constraint is set to ${xAlign}. You might want to set it to Center.`)
                             }
                             break;
                         case "Stretch":
                             if (!(xAlign == "Center" || xAlign == "Stretch" || xAlign == "Scale")) {
-                                console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually Stretched, but the constraint is set to ${xAlign}. You might want to set it to Stretch.`)
+                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                lints.push(warn)
+                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually Stretched, but the constraint is set to ${xAlign}. You might want to set it to Stretch.`)
                             }
                     }
                 }
             }
         }
+        return lints
     } else {
         return true
     }

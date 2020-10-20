@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export class ReflectLintFeedback extends Error {
     constructor(message) {
         super(message);
@@ -9,3 +11,5 @@ export class ReflectLintFeedback extends Error {
         Error.captureStackTrace(this, this.constructor);
     }
 }
+
+export type LintResults = boolean | Array<ReflectLintFeedback>
