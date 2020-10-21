@@ -1,5 +1,5 @@
-import { ReflectLintFeedback } from "../feedbacks";
-import { DefaultNameUsageWarning, InvalidCharacterInNameError } from "../feedbacks/assert";
+import { ReflectLintFeedback } from "../feedbacks/feedback";
+import { DefaultNameUsageWarning, InvalidCharacterInNameError } from "../feedbacks/naming.feedback";
 
 export const DEFAULT_SHAPE_NAME_PATTERNS = [
     "Rectangle",

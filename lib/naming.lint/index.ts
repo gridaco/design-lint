@@ -1,6 +1,6 @@
 import InvalidCharacterLint from "./invalid-character.lint";
 import lintDefaultNameUsage from "./default-name.lint";
-import { ReflectLintFeedback } from "../feedbacks";
+import { ReflectLintFeedback } from "../feedbacks/feedback";
 
 
 export default function (name: string, context?): Array<ReflectLintFeedback> {

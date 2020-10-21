@@ -1,6 +1,6 @@
 import { getgroups } from "process"
-import { LintResults, ReflectLintFeedback } from "../feedbacks"
-import { MissingConstraintsWarning } from "../feedbacks/warn"
+import { LintResults, ReflectLintFeedback } from "../feedbacks/feedback"
+import { MissingConstraintsWarning } from "../feedbacks/constraints.feedback"
 
 /**
  * Iterates throught the children, finds the missing constraints. It does not inspect the givven node itself.

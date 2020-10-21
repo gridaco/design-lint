@@ -1,5 +1,5 @@
-import { ReflectLintFeedback } from "../feedbacks";
-import { InvalidCharacterInNameError } from "../feedbacks/assert";
+import { ReflectLintFeedback } from "../feedbacks/feedback";
+import { InvalidCharacterInNameError } from "../feedbacks/naming.feedback";
 
 /**
  * 

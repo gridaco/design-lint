@@ -1,5 +1,5 @@
-import naming from "./naming"
-import structure from "./structure"
+import naming from "./naming.lint"
+import structure from "./structure.lint"
 
 // provide full content for linting
 export function lintAll(content) {

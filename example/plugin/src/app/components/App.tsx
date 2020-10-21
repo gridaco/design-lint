@@ -145,7 +145,7 @@ const App = ({}) => {
     window.addEventListener("focus", onFocus);
     window.addEventListener("blur", onBlur);
 
-    window.onmessage = event => {
+    window.addEventListener("message", function(event) {
       const { type, message, errors, storage } = event.data.pluginMessage;
 
       // Plugin code returns this message after finished a loop through the layers.
@@ -202,7 +202,7 @@ const App = ({}) => {
         // Once the errors are returned, update the error array.
         updateErrorArray(errors);
       }
-    };
+    });
   }, []);
 
   return (
