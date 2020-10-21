@@ -2,6 +2,7 @@ import { ReflectLintFeedback } from "../feedbacks/feedback";
 import { DefaultNameUsageWarning, InvalidCharacterInNameError } from "../feedbacks/naming.feedback";
 
 export const DEFAULT_SHAPE_NAME_PATTERNS = [
+    //#region  figma's default node naming
     "Rectangle",
     "Line",
     "Polygon",
@@ -9,9 +10,12 @@ export const DEFAULT_SHAPE_NAME_PATTERNS = [
     "Arrow",
     "icon",
     "Frame",
+    "Group"
+    //#endregion
 ]
 export const DEFAULT_SCREEN_NAME_PATTERNS = [
 
+    //#region  figma's screen frame default naming
     "iPhone 11 Pro Max",
     "iPhone 11 Pro",
     "iPhone 11",
@@ -50,6 +54,8 @@ export const DEFAULT_SCREEN_NAME_PATTERNS = [
     "Twitter Header",
 
     //TODO:: Add more
+
+    //#endregion
 ]
 
 const DEFAULT_NAME_PATTERNS = [...DEFAULT_SHAPE_NAME_PATTERNS, ...DEFAULT_SCREEN_NAME_PATTERNS]
@@ -65,8 +71,8 @@ const DEFAULT_NAME_PATTERNS = [...DEFAULT_SHAPE_NAME_PATTERNS, ...DEFAULT_SCREEN
  */
 export default function lintDefaultNameUsage(name: string): ReflectLintFeedback {
     for (const pattern of DEFAULT_NAME_PATTERNS) {
-        // TODO - this regex cannot check for various logic for screen naming.
-        var regExp = "^" + pattern + " - " + "[0-9]*$"
+        // ( | - ) means " " or " - "
+        var regExp = "^" + pattern + "( | - )" + "[0-9]*$"
         if (name.match(RegExp(regExp)))
             return new DefaultNameUsageWarning(name);
     }

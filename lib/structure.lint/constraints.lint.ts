@@ -34,6 +34,8 @@ export function lintMissingConstraints(node: SceneNode): LintResults {
                 // INSTANCE, COMPONENT, FRAME are supported. GROUP support is blocked by https://github.com/figma/plugin-typings/issues/9
                 if (childNode.type == "INSTANCE" || childNode.type == "COMPONENT" || childNode.type == "FRAME" || childNode.type == "RECTANGLE" || childNode.type == "GROUP") {
                     const xAlign: LCRS = getNodeLCRS(childNode);
+
+                    console.warn(node.name, xAlign)
                     switch (lcr) {
                         case "Left":
                             if (!(xAlign == "Left")) {
@@ -66,6 +68,17 @@ export function lintMissingConstraints(node: SceneNode): LintResults {
     } else {
         return true
     }
+}
+
+function getRelX(node: SceneNode) {
+    if (node.parent.type == "GROUP") {
+
+    }
+    node.x
+}
+
+function getRelY(node: SceneNode) {
+
 }
 
 function getNodeLCRS(node: SceneNode): LCRS {
