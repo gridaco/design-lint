@@ -1,4 +1,4 @@
-import { naming } from "..";
+import { naming } from "../dist";
 
 const goodNamings = [
     "login",
@@ -21,23 +21,23 @@ export function test() {
     var fail = [];
 
     goodNamings.forEach((val, i) => {
-        try{
+        try {
             naming(val)
             successful.push(val)
-        }catch (e) {
+        } catch (e) {
             fail.push(e)
         }
     })
     badNamings.forEach((val, i) => {
-        try{
+        try {
             naming(val)
             successful.push(val)
-        }catch (e) {
+        } catch (e) {
             fail.push(e)
         }
     })
     return {
-        "successful" : successful,
-        "fail" : fail
+        "successful": successful,
+        "fail": fail
     }
 }

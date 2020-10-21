@@ -1,4 +1,4 @@
-import { test as namingLintTest } from "./naming"
+import { test as namingLintTest } from "./naming.test"
 
 function runAllExamples() {
     var nameLintTestResult = namingLintTest()
@@ -6,7 +6,7 @@ function runAllExamples() {
     console.log("Number of success data  : " + (nameLintTestResult.successful.length))
     console.log("Number of fail data  : " + (nameLintTestResult.fail.length))
 
-    nameLintTestResult.fail.forEach(s=>{
+    nameLintTestResult.fail.forEach(s => {
         console.log(s.message)
     })
 }
