@@ -1,3 +1,4 @@
+import { getgroups } from "process"
 import { LintResults, ReflectLintFeedback } from "../feedbacks"
 import { MissingConstraintsWarning } from "../feedbacks/warn"
 
@@ -31,35 +32,31 @@ export function lintMissingConstraints(node: SceneNode): LintResults {
                 })
 
                 // INSTANCE, COMPONENT, FRAME are supported. GROUP support is blocked by https://github.com/figma/plugin-typings/issues/9
-                if (childNode.type == "INSTANCE" || childNode.type == "COMPONENT" || childNode.type == "FRAME" || childNode.type == "RECTANGLE") {
-                    const xAlign: LCRS = X_ALIGN_FIGMA_TO_REFLECT.get(childNode.constraints.horizontal)
+                if (childNode.type == "INSTANCE" || childNode.type == "COMPONENT" || childNode.type == "FRAME" || childNode.type == "RECTANGLE" || childNode.type == "GROUP") {
+                    const xAlign: LCRS = getNodeLCRS(childNode);
                     switch (lcr) {
                         case "Left":
                             if (!(xAlign == "Left")) {
                                 const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
                                 lints.push(warn)
-                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Left, but the constraint is set to ${xAlign}. You might want to set it to Left.`)
                             }
                             break;
                         case "Right":
                             if (!(xAlign == "Right")) {
                                 const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
                                 lints.push(warn)
-                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Right, but the constraint is set to ${xAlign}. You might want to set it to Right.`)
                             }
                             break;
                         case "Center":
                             if (!(xAlign == "Center" || xAlign == "Stretch")) {
-                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, `Stretch or Center`)
                                 lints.push(warn)
-                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually aligned Center, but the constraint is set to ${xAlign}. You might want to set it to Center.`)
                             }
                             break;
                         case "Stretch":
                             if (!(xAlign == "Center" || xAlign == "Stretch" || xAlign == "Scale")) {
-                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, `Stretch, Center, or Scale`)
                                 lints.push(warn)
-                                // console.warn(`child node "${childNode.name}" in parent "${node.name}" is visually Stretched, but the constraint is set to ${xAlign}. You might want to set it to Stretch.`)
                             }
                     }
                 }
@@ -68,6 +65,41 @@ export function lintMissingConstraints(node: SceneNode): LintResults {
         return lints
     } else {
         return true
+    }
+}
+
+function getNodeLCRS(node: SceneNode): LCRS {
+    if (node.type == "INSTANCE" || node.type == "COMPONENT" || node.type == "FRAME" || node.type == "RECTANGLE") {
+        return X_ALIGN_FIGMA_TO_REFLECT.get(node.constraints.horizontal)
+    } else if (node.type == "GROUP") {
+        return getGroupLCRS(node);
+    }
+}
+
+/**
+ * check group's constraint
+ * https://github.com/figma/plugin-typings/issues/9
+ * @param node 
+ */
+function getGroupLCRS(node: SceneNode): LCRS {
+    let lastLCRS: LCRS;
+    if (node.type == "GROUP") {
+        for (const c of node.children) {
+            const lcrs = getGroupLCRS(c)
+            if (lastLCRS) {
+                if (lastLCRS === lcrs) {
+                    // do nothing if lcrs matches
+                } else {
+                    // return mixed, if last lcrs does not match current one.
+                    return "Mixed"
+                }
+            } else {
+                lastLCRS = lcrs
+            }
+        }
+        return lastLCRS
+    } else {
+        return getNodeLCRS(node)
     }
 }
 
@@ -91,7 +123,7 @@ interface LintResult {
 
 
 const SAFE_DAMPING_PX = 0.5
-type LCRS = "Left" | "Center" | "Right" | "Stretch" | "Scale"
+type LCRS = "Left" | "Center" | "Right" | "Stretch" | "Scale" | "Mixed"
 /**
  * calculate the position element in X plane of givven container
  * 
