@@ -16,9 +16,7 @@
     "noUnusedLocals": false,
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/@figma",
       "../../node_modules/@types",
-      "../../node_modules/@figma",
     ]
   },
   "exclude": [
