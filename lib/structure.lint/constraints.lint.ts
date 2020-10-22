@@ -1,7 +1,7 @@
 import { LintResults, ReflectLintFeedback } from "../feedbacks/feedback"
 import { MissingConstraintsWarning } from "../feedbacks/constraints.feedback"
-import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes"
-import { getLCRS, LCRS } from "@bridged.xyz/design-sdk/lib/utils/lcrs"
+import { ReflectConstraintMixin, ReflectChildrenMixin } from "@bridged.xyz/design-sdk/lib/nodes"
+import { LCRS } from "@bridged.xyz/design-sdk/lib/utils/lcrs"
 
 
 type Lint = boolean | LintResult
@@ -16,30 +16,18 @@ interface LintResult {
  * Again, It inspects the children of the givven node, not the node itself.
  * @param node the target node to be inspected. node should be Group or Frame to be inspected.
  */
-export function lintMissingConstraints(node: ReflectSceneNode): LintResults {
+export function lintMissingConstraints(node: ReflectConstraintMixin): LintResults {
     const lints: Array<ReflectLintFeedback> = []
 
     const containerWidth = node.width
     const containerHeight = node.height
 
-    if (node.type == "FRAME" || node.type == "GROUP" || node.type == "COMPONENT" || node.type == "INSTANCE") {
-
+    if (node instanceof ReflectChildrenMixin) {
         for (const childNode of node.children) {
             const validTarget = childNode.visible && !childNode.locked
             if (validTarget) {
 
-                // FIXME rel does not work with group as expected.
-                const relX = childNode.x
-                const relXCenter = relX + (childNode.width / 2)
-                const relY = childNode.y
-                const relYCenter = relY + (childNode.height / 2)
-
-                const lcr = getLCRS({
-                    centerPosition: relXCenter,
-                    startPosition: childNode.x,
-                    containerWidth: containerWidth,
-                    width: childNode.width
-                })
+                const lcr = childNode.relativeLcrs
 
                 // INSTANCE, COMPONENT, FRAME are supported. GROUP support is blocked by https://github.com/figma/plugin-typings/issues/9
                 if (childNode.type == "INSTANCE" || childNode.type == "COMPONENT" || childNode.type == "FRAME" || childNode.type == "RECTANGLE" || childNode.type == "GROUP") {
