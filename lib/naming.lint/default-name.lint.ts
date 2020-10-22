@@ -75,6 +75,6 @@ export default function lintDefaultNameUsage(target: ReflectSceneNode): ReflectL
         // ( | - ) means " " or " - "
         var regExp = "^" + pattern + "( | - )" + "[0-9]*$"
         if (target.name.match(RegExp(regExp)))
-            return new DefaultNameUsageWarning(target);
+            return new DefaultNameUsageWarning(target.copyAsSnippet());
     }
 }

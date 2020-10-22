@@ -17,6 +17,6 @@ export default function InvalidCharacterLint(target: ReflectSceneNode): ReflectL
     // |
 
     if (target.name.includes("!")) {
-        return new InvalidCharacterInNameError(target, "!");
+        return new InvalidCharacterInNameError(target.copyAsSnippet(), "!");
     }
 }

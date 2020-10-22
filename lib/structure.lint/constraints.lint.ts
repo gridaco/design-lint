@@ -19,9 +19,6 @@ interface LintResult {
 export function lintMissingConstraints(node: ReflectConstraintMixin): LintResults {
     const lints: Array<ReflectLintFeedback> = []
 
-    const containerWidth = node.width
-    const containerHeight = node.height
-
     if (node instanceof ReflectChildrenMixin) {
         for (const childNode of node.children) {
             const validTarget = childNode.visible && !childNode.locked
@@ -32,30 +29,31 @@ export function lintMissingConstraints(node: ReflectConstraintMixin): LintResult
                 // INSTANCE, COMPONENT, FRAME are supported. GROUP support is blocked by https://github.com/figma/plugin-typings/issues/9
                 if (childNode.type == "INSTANCE" || childNode.type == "COMPONENT" || childNode.type == "FRAME" || childNode.type == "RECTANGLE" || childNode.type == "GROUP") {
                     const xAlign: LCRS = node.lcrs
-
+                    const target = childNode.copyAsSnippet()
+                    const parent = node.copyAsSnippet()
                     console.warn(node.name, xAlign)
                     switch (lcr) {
                         case "Left":
                             if (!(xAlign == "Left")) {
-                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, lcr)
+                                const warn = new MissingConstraintsWarning(target, parent, lcr, xAlign, lcr)
                                 lints.push(warn)
                             }
                             break;
                         case "Right":
                             if (!(xAlign == "Right")) {
-                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, lcr)
+                                const warn = new MissingConstraintsWarning(target, parent, lcr, xAlign, lcr)
                                 lints.push(warn)
                             }
                             break;
                         case "Center":
                             if (!(xAlign == "Center" || xAlign == "Stretch")) {
-                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, `Stretch or Center`)
+                                const warn = new MissingConstraintsWarning(target, parent, lcr, xAlign, `Stretch or Center`)
                                 lints.push(warn)
                             }
                             break;
                         case "Stretch":
                             if (!(xAlign == "Center" || xAlign == "Stretch" || xAlign == "Scale")) {
-                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, `Stretch, Center, or Scale`)
+                                const warn = new MissingConstraintsWarning(target, parent, lcr, xAlign, `Stretch, Center, or Scale`)
                                 lints.push(warn)
                             }
                     }
