@@ -37,25 +37,25 @@ export function lintMissingConstraints(node: ReflectConstraintMixin): LintResult
                     switch (lcr) {
                         case "Left":
                             if (!(xAlign == "Left")) {
-                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, lcr)
                                 lints.push(warn)
                             }
                             break;
                         case "Right":
                             if (!(xAlign == "Right")) {
-                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, lcr)
+                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, lcr)
                                 lints.push(warn)
                             }
                             break;
                         case "Center":
                             if (!(xAlign == "Center" || xAlign == "Stretch")) {
-                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, `Stretch or Center`)
+                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, `Stretch or Center`)
                                 lints.push(warn)
                             }
                             break;
                         case "Stretch":
                             if (!(xAlign == "Center" || xAlign == "Stretch" || xAlign == "Scale")) {
-                                const warn = new MissingConstraintsWarning(childNode.name, node.name, lcr, xAlign, `Stretch, Center, or Scale`)
+                                const warn = new MissingConstraintsWarning(childNode, node, lcr, xAlign, `Stretch, Center, or Scale`)
                                 lints.push(warn)
                             }
                     }

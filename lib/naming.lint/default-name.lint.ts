@@ -1,3 +1,4 @@
+import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
 import { ReflectLintFeedback } from "../feedbacks/feedback";
 import { DefaultNameUsageWarning, InvalidCharacterInNameError } from "../feedbacks/naming.feedback";
 
@@ -67,13 +68,13 @@ const DEFAULT_NAME_PATTERNS = [...DEFAULT_SHAPE_NAME_PATTERNS, ...DEFAULT_SCREEN
  * "Frame - 1" warn
  * "iPhone" - warn
  * "iPhone - 1" - warn
- * @param name the name of the node
+ * @param target the name of the node
  */
-export default function lintDefaultNameUsage(name: string): ReflectLintFeedback {
+export default function lintDefaultNameUsage(target: ReflectSceneNode): ReflectLintFeedback {
     for (const pattern of DEFAULT_NAME_PATTERNS) {
         // ( | - ) means " " or " - "
         var regExp = "^" + pattern + "( | - )" + "[0-9]*$"
-        if (name.match(RegExp(regExp)))
-            return new DefaultNameUsageWarning(name);
+        if (target.name.match(RegExp(regExp)))
+            return new DefaultNameUsageWarning(target);
     }
 }

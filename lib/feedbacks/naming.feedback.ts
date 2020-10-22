@@ -1,20 +1,21 @@
+import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
 import { ReflectLintFeedback } from "./feedback";
 
 
 export class NamingFeedback extends ReflectLintFeedback {
-    constructor(message) {
-        super(message)
+    constructor(target: ReflectSceneNode, message: string) {
+        super(target, message)
     }
 }
 
 export class InvalidCharacterInNameError extends NamingFeedback {
-    constructor(givven: string, invalidToken: string) {
-        super(`the given name ${givven} contains invalid token ${invalidToken}.`);
+    constructor(target: ReflectSceneNode, invalidToken: string) {
+        super(target, `the given name "${target.name}" contains invalid token ${invalidToken}.`);
     }
 }
 
 export class DefaultNameUsageWarning extends NamingFeedback {
-    constructor(given: string) {
-        super(`the given name ${given} is default name. Please make a different name.`);
+    constructor(target: ReflectSceneNode) {
+        super(target, `the given name "${target.name}" is default name. Recommanded to assign a different name.`);
     }
 }
