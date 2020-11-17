@@ -9,5 +9,6 @@ export const DEFAULT_ICON_NAMING_CONVENTION_PATTERNS = [
     "ico/**",
     "**/icon/**",
     "icon/**",
-    "**/mdi_*/**"
+    "**/mdi_**/**",
+    "mdi_**",
 ]
