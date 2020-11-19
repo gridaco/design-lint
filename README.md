@@ -1,3 +1,5 @@
+![](./branding/lint-eye-final-cover-export.png)
+
 # lint
 > lint is currently being developed for [assistant](https://github.com/bridgedxyz/assistant/tree/master/packages), it's dependancy requires this repository to run under /assistant/packages/lint. which you can clone this repository directly, but not stable branches might have some incompatibility among the dependencies.
 
