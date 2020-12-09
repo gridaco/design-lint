@@ -1,10 +1,12 @@
 const DEFAULT_CHIP_NAMING_CONVENTION_PATTERNS = [
     "**/chips/**",
+    "**/chips",
     "chips/**",
-    "**/ico/**",
-    "ico/**",
+    "chips",
     "**/chip/**",
+    "**/chip",
     "chip/**",
+    "chip",
 ]
 // chip content
 // like text
@@ -29,6 +31,7 @@ const DEFAULT_CHIP_BACKGROUND_NAMING_CONVENTION_PATTERNS = [
     "slot:chip/bg",
     "slot:chip/BG",
     "slot:chip/Background",
+    "slot:chip/base",
 ]
 
 export {
