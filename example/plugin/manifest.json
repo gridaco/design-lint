@@ -1,7 +1,0 @@
-{
-  "name": "Design Lint",
-  "id": "801195587640428208",
-  "api": "1.0.0",
-  "main": "dist/code.js",
-  "ui": "dist/ui.html"
-}
