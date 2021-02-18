@@ -12,6 +12,11 @@ export class Linter {
    * @param node target node
    */
   runLintsOn(node: ReflectSceneNode): Array<ReflectLintFeedback> {
+    // reject if selected node is too big for it's size or child count.
+    if (node.width > 3000) {
+      throw `node "${node.name}" too big for running linter on.`;
+    }
+
     const feedbacks: Array<ReflectLintFeedback> = [];
 
     const constraintsWarnings = lintMissingConstraints(node);
