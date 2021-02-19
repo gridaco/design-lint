@@ -1,39 +1,43 @@
-import { lintMissingConstraints } from "@reflect.bridged.xyz/linter/lib/structure.lint/constraints.lint";
-import lintNamingConventions from "@reflect.bridged.xyz/linter/lib/naming.lint";
-import { detect } from "@reflect.bridged.xyz/detection/lib";
-import { ReflectLintFeedback } from "@reflect.bridged.xyz/linter/lib/feedbacks";
 import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
+import { ReflectLintFeedback } from "../feedbacks";
+import { MissingTextStyleGeneralLinter } from "../text.lint";
+import { Linter } from "./lint.base";
+import { ComplexLinter } from "./lint.complex";
+import { LintRunner } from "./lint.runner";
 
-export class Linter {
-  constructor(config?) {}
+export * from "./lint.runner";
 
-  /**
-   * run lints on target node
-   * @param node target node
-   */
-  runLintsOn(node: ReflectSceneNode): Array<ReflectLintFeedback> {
-    // reject if selected node is too big for it's size or child count.
-    if (node.width > 3000) {
-      throw `node "${node.name}" too big for running linter on.`;
-    }
+/**
+ * Runs lint based on current user's node selection
+ */
+export class DefaultSeectionLintRunner extends LintRunner {
+  constructor(readonly selection: ReflectSceneNode) {
+    // const runner = new LintRunner();
+    super({
+      start: selection,
+      root: selection,
+      current: selection,
+      linter: new AllPossibleLinter(),
+    });
+  }
 
-    const feedbacks: Array<ReflectLintFeedback> = [];
+  runLints() {
+    this.runLintsOn(this.selection);
+  }
+}
 
-    const constraintsWarnings = lintMissingConstraints(node);
-    if (Array.isArray(constraintsWarnings)) {
-      feedbacks.push(...constraintsWarnings);
-    }
+export class AllPossibleLinter extends ComplexLinter {
+  constructor() {
+    super();
+  }
 
-    const namingFeedbacks = lintNamingConventions(node);
-    if (Array.isArray(namingFeedbacks)) {
-      feedbacks.push(...namingFeedbacks);
-    }
+  get rootLinters(): readonly Linter[] {
+    return [new MissingTextStyleGeneralLinter()];
+  }
 
-    // test
-    const detected = detect(node);
-    console.warn("detected", detected);
-    // test
-
-    return feedbacks;
+  runLintsOn(
+    node: ReflectSceneNode
+  ): ReflectLintFeedback | readonly ReflectLintFeedback[] {
+    throw new Error("Method not implemented.");
   }
 }

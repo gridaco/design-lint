@@ -1,0 +1,117 @@
+import { lintMissingConstraints } from "@reflect.bridged.xyz/linter/lib/structure.lint/constraints.lint";
+import { lintGeneralLayerNamingConvention } from "@reflect.bridged.xyz/linter/lib/naming.lint";
+import { detect } from "@reflect.bridged.xyz/detection/lib";
+import { ReflectLintFeedback } from "@reflect.bridged.xyz/linter/lib/feedbacks";
+import {
+  ReflectSceneNode,
+  ReflectSceneNodeType,
+  ReflectTextNode,
+} from "@bridged.xyz/design-sdk/lib/nodes";
+import {
+  lintMissingTextStyle,
+  MissingTextStyleGeneralLinter,
+} from "../text.lint/missing-text-style.lint";
+import { LintRunnderDepth, LintRunnerRangeOption } from "./lint.option";
+import { Linter } from "./lint.base";
+import { vaidateLintableNodeSize } from "./validation.pre/node-size.validation";
+import { Valid } from "../feedbacks/validation";
+
+export class LintRunner {
+  start: ReflectSceneNode;
+  root: ReflectSceneNode;
+  current: ReflectSceneNode;
+  linter: Linter;
+  /**
+   *
+   * @param config optional inter config override (custom config json)
+   */
+  constructor(params: {
+    start: ReflectSceneNode;
+    root: ReflectSceneNode;
+    current: ReflectSceneNode;
+    linter: Linter;
+    config?;
+  }) {
+    this.start = params.start;
+    this.root = params.root;
+    this.current = params.current;
+    this.linter = params.linter;
+  }
+
+  /**
+   * run lints on target node
+   * @param node target node
+   */
+  runLintsOn(
+    node: ReflectSceneNode,
+    depth?: LintRunnderDepth,
+    option?: LintRunnerRangeOption
+  ): Array<ReflectLintFeedback> {
+    //
+    // region validations
+    //
+    if (depth) {
+      throw `"depth" parameter is not supported at this moment.`;
+    }
+    if (option) {
+      throw `"option" parameter is not supported at this moment.`;
+    }
+
+    // reject if selected node is too big for it's size or child count.
+    const sizeValidatiion = vaidateLintableNodeSize(node);
+    if (!(sizeValidatiion instanceof Valid)) {
+      throw sizeValidatiion;
+    }
+    //
+    // endregion validations
+    //
+
+    //
+    // START OF LOGICAL CODE
+    //
+    const feedbacks: Array<ReflectLintFeedback> = [];
+
+    // NOTE - TODO - this currently runs lint to depth 1, direct children.
+    // Need to be fixed to iterate through all possible layers
+    if (node.hasChildren) {
+      node.children.forEach((cn) => {
+        runLints(cn);
+      });
+    } else {
+      runLints(node);
+    }
+
+    function runLints(node: ReflectSceneNode) {
+      // constraints lints
+      const constraintsWarnings = lintMissingConstraints(node);
+      if (Array.isArray(constraintsWarnings)) {
+        feedbacks.push(...constraintsWarnings);
+      }
+
+      // naming lints
+      const namingFeedbacks = lintGeneralLayerNamingConvention(node);
+      if (Array.isArray(namingFeedbacks)) {
+        feedbacks.push(...namingFeedbacks);
+      }
+
+      // text style lints
+      // missing text style lint
+      if (node.type == ReflectSceneNodeType.text) {
+        new MissingTextStyleGeneralLinter();
+        const textStyleFeedbacks = lintMissingTextStyle(
+          node as ReflectTextNode
+        );
+        if (textStyleFeedbacks) {
+          feedbacks.push(textStyleFeedbacks);
+        }
+      }
+    }
+
+    // test
+    const detected = detect(node);
+    console.warn("detected", detected);
+    // test
+
+    return feedbacks;
+  }
+}
