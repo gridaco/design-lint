@@ -1,3 +1,4 @@
+import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
 import { Linter } from "./lint.base";
 import { LintOption } from "./lint.option";
 
@@ -10,4 +11,15 @@ export abstract class GenerallLinter extends Linter {
     super();
   }
   option: LintOption;
+
+  /**
+   * retursn flat mapped target nodes filtered from option and it's range.
+   * for example, if AllExceptInstances as a option provided, all nodes except from instance layer will all be returned as a flat target
+   */
+  get flatTargets(): readonly ReflectSceneNode[] {
+    if (this.option) {
+      throw "option filtering is not implemented";
+    }
+    return [];
+  }
 }

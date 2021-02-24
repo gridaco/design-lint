@@ -26,6 +26,9 @@ export class DefaultSeectionLintRunner extends LintRunner {
   }
 }
 
+/**
+ * The default linter, runs all possuble linter as on this single linter.
+ */
 export class AllPossibleLinter extends ComplexLinter {
   constructor() {
     super();
@@ -35,9 +38,8 @@ export class AllPossibleLinter extends ComplexLinter {
     return [new MissingTextStyleGeneralLinter()];
   }
 
-  runLintsOn(
-    node: ReflectSceneNode
-  ): ReflectLintFeedback | readonly ReflectLintFeedback[] {
-    throw new Error("Method not implemented.");
+  runLintsOn(node: ReflectSceneNode): readonly ReflectLintFeedback[] {
+    // use the default logic provider
+    return super.runLintsOn(node);
   }
 }
