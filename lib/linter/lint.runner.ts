@@ -7,11 +7,8 @@ import {
   ReflectSceneNodeType,
   ReflectTextNode,
 } from "@bridged.xyz/design-sdk/lib/nodes";
-import {
-  lintMissingTextStyle,
-  MissingTextStyleGeneralLinter,
-} from "../text.lint/missing-text-style.lint";
-import { LintRunnderDepth, LintRunnerRangeOption } from "./lint.option";
+import { MissingTextStyleGeneralLinter } from "../text.lint/missing-text-style.lint";
+import { LintRunnerRange, LintRunnerFilterOption } from "./lint.option";
 import { Linter } from "./lint.base";
 import { vaidateLintableNodeSize } from "./validation.pre/node-size.validation";
 import { Valid } from "../feedbacks/validation";
@@ -44,8 +41,8 @@ export class LintRunner {
    */
   runLintsOn(
     node: ReflectSceneNode,
-    depth?: LintRunnderDepth,
-    option?: LintRunnerRangeOption
+    depth?: LintRunnerRange,
+    option?: LintRunnerFilterOption
   ): ReadonlyArray<ReflectLintFeedback> {
     //
     // region validations
@@ -97,12 +94,10 @@ export class LintRunner {
       // text style lints
       // missing text style lint
       if (node.type == ReflectSceneNodeType.text) {
-        new MissingTextStyleGeneralLinter();
-        const textStyleFeedbacks = lintMissingTextStyle(
-          node as ReflectTextNode
-        );
+        const linter = new MissingTextStyleGeneralLinter();
+        const textStyleFeedbacks = linter.runLintsOn(node);
         if (textStyleFeedbacks) {
-          feedbacks.push(textStyleFeedbacks);
+          feedbacks.push(...textStyleFeedbacks);
         }
       }
     }

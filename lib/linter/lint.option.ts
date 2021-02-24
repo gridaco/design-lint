@@ -1,17 +1,23 @@
 export class LintOption {
-  constructor() {}
+  filter: LintRunnerFilterOption;
+  range: LintRunnerRange;
+  constructor(params?: {
+    filter: LintRunnerFilterOption;
+    range: LintRunnerRange;
+  }) {
+    this.filter = params && params?.filter;
+    this.range = params && params?.range;
+  }
 }
 
-export interface LintRunnerRangeOption {
+export interface LintRunnerFilterOption {
   runsOnComponent: boolean;
-  runsFromParent: boolean;
-  runsFrommRoot: boolean;
 }
 
 /**
  * specifies the dpeth / range of the lint-running scope.
  */
-export enum LintRunnderDepth {
+export enum LintRunnerRange {
   /**
    * runs on all, including this. ignores upper tree including parent and root.
    */
@@ -22,22 +28,22 @@ export enum LintRunnderDepth {
   this = "lint-range.nodes.this",
 
   /**
-   * runs lint from this parent, down to this.
+   * runs lint from this parent, from to this. (all)
    */
   fromParent = "lint-range.nodes.from-parent",
 
   /**
-   * runs lint from root, down to this.
+   * runs lint from this parent, down to this.
+   */
+  fromParentForDirectChildren = "lint-range.nodes.from-parent-for-direct-children",
+
+  /**
+   * runs lint from root, down from this. (all)
    */
   fromRoot = "lint-range.nodes.from-root",
 
   /**
    * runs lint for this' children, looped
    */
-  forChildren = "lint-range.nodes.for-children",
-
-  /**
-   * runs lint for this' children, looped, make linter relative to `this`
-   */
-  forChildrenRelativeToThis = "lint-range.nodes.for-children-reative-to-this",
+  forDirectChildren = "lint-range.nodes.for-children",
 }
