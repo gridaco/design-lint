@@ -13,16 +13,22 @@ export abstract class GenerallLinter extends Linter {
   }
   option: LintOption;
 
-  /**
-   * retursn flat mapped target nodes filtered from option and it's range.
-   * for example, if AllExceptInstances as a option provided, all nodes except from instance layer will all be returned as a flat target
-   */
-  getFlatTargetsOf(node: ReflectSceneNode): readonly ReflectSceneNode[] {
+  getTargetsOf(node: ReflectSceneNode) {
     if (!this.option) {
       throw `this linter ${this} does not contain option for filtering flat targets. if you want to target all possible nodes, \`AllExceptInstances\` is a recommended option`;
     }
     const optionProcessor = new LintingOptionProcessor(this.option);
     const result = optionProcessor.process(node);
     return result;
+  }
+
+  /**
+   * retursn flat mapped target nodes filtered from option and it's range.
+   * for example, if AllExceptInstances as a option provided, all nodes except from instance layer will all be returned as a flat target
+   */
+  getFlatTargetsOf(node: ReflectSceneNode): readonly ReflectSceneNode[] {
+    return node.getGrandchildren({
+      includeThis: true,
+    });
   }
 }

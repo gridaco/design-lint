@@ -72,13 +72,13 @@ export class LintRunner {
     // Need to be fixed to iterate through all possible layers
     if (node.hasChildren) {
       node.children.forEach((cn) => {
-        runLints(cn);
+        runLegacyLints(cn);
       });
     } else {
-      runLints(node);
+      runLegacyLints(node);
     }
 
-    function runLints(node: ReflectSceneNode) {
+    function runLegacyLints(node: ReflectSceneNode) {
       // constraints lints
       const constraintsWarnings = lintMissingConstraints(node);
       if (Array.isArray(constraintsWarnings)) {
@@ -90,16 +90,15 @@ export class LintRunner {
       if (Array.isArray(namingFeedbacks)) {
         feedbacks.push(...namingFeedbacks);
       }
+    }
 
-      // text style lints
-      // missing text style lint
-      if (node.type == ReflectSceneNodeType.text) {
-        const linter = new MissingTextStyleGeneralLinter();
-        const textStyleFeedbacks = linter.runLintsOn(node);
-        if (textStyleFeedbacks) {
-          feedbacks.push(...textStyleFeedbacks);
-        }
-      }
+    // text style lints
+    // missing text style lint
+    const textStyleFeedbacks = new MissingTextStyleGeneralLinter().runLintsOn(
+      node
+    );
+    if (textStyleFeedbacks) {
+      feedbacks.push(...textStyleFeedbacks);
     }
 
     // test
