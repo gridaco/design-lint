@@ -46,7 +46,7 @@ export class LintRunner {
     node: ReflectSceneNode,
     depth?: LintRunnderDepth,
     option?: LintRunnerRangeOption
-  ): Array<ReflectLintFeedback> {
+  ): ReadonlyArray<ReflectLintFeedback> {
     //
     // region validations
     //

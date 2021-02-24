@@ -21,8 +21,8 @@ export class DefaultSeectionLintRunner extends LintRunner {
     });
   }
 
-  runLints() {
-    this.runLintsOn(this.selection);
+  runLints(): ReadonlyArray<ReflectLintFeedback> {
+    return this.runLintsOn(this.selection);
   }
 }
 
