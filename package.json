@@ -1,6 +1,6 @@
 {
-  "name": "@reflect.bridged.xyz/linter",
-  "version": "0.0.4-rc",
+  "name": "@reflect-ui/lint",
+  "version": "0.0.5-rc",
   "description": "linter for reflect",
   "main": "lib",
   "scripts": {
@@ -19,9 +19,9 @@
     "README.md",
     "LICENSE"
   ],
-  "repository": "https://github.com/bridgedxyz/lint/linter",
-  "homepage": "https://reflect.bridged.xyz/lint",
+  "repository": "https://github.com/bridgedxyz/lint",
+  "homepage": "https://reflect-ui.com/lint",
   "author": "bridged.xyz - softmarshmallow",
-  "license": "MIT",
+  "license": "Apache 2.0",
   "private": false
 }

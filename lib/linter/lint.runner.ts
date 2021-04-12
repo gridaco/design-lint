@@ -1,12 +1,8 @@
-import { lintMissingConstraints } from "@reflect.bridged.xyz/linter/lib/structure.lint/constraints.lint";
-import { lintGeneralLayerNamingConvention } from "@reflect.bridged.xyz/linter/lib/naming.lint";
+import { lintMissingConstraints } from "../structure.lint/constraints.lint";
+import { lintGeneralLayerNamingConvention } from "../naming.lint";
 import { detect } from "@reflect.bridged.xyz/detection/lib";
-import { ReflectLintFeedback } from "@reflect.bridged.xyz/linter/lib/feedbacks";
-import {
-  ReflectSceneNode,
-  ReflectSceneNodeType,
-  ReflectTextNode,
-} from "@bridged.xyz/design-sdk/lib/nodes";
+import { ReflectLintFeedback } from "../feedbacks";
+import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
 import { MissingTextStyleGeneralLinter } from "../text.lint/missing-text-style.lint";
 import { LintRunnerRange, LintRunnerFilterOption } from "./lint.option";
 import { Linter } from "./lint.base";
