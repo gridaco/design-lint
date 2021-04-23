@@ -1,4 +1,4 @@
-import { IReflectNodeReference } from "@bridged.xyz/design-sdk/lib/nodes";
+import { IReflectNodeReference } from "@bridged.xyz/design-sdk/lib/nodes/lignt";
 import {
   MissingColorStyleFeedback,
   MissingStyleFeedback,
