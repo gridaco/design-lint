@@ -4,7 +4,7 @@ import {
   ReflectConstraintMixin,
   ReflectChildrenMixin,
 } from "@bridged.xyz/design-sdk/lib/nodes";
-import { LCRS } from "@bridged.xyz/design-sdk/lib/utils/lcrs";
+import { constraints } from "@bridged.xyz/design-sdk";
 
 type Lint = boolean | LintResult;
 
@@ -39,7 +39,7 @@ export function lintMissingConstraints(
           childNode.type == "RECTANGLE" ||
           childNode.type == "GROUP"
         ) {
-          const xAlign: LCRS = childNode.constraintLcrs;
+          const xAlign: constraints.LCRS = childNode.constraintLcrs;
           const target = childNode.copyAsSnippet();
           console.warn(childNode.name, visualPositioning, xAlign);
           switch (visualPositioning) {
