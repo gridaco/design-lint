@@ -1,6 +1,5 @@
 import { lintMissingConstraints } from "../structure.lint/constraints.lint";
 import { lintGeneralLayerNamingConvention } from "../naming.lint";
-import { detect } from "@reflect-ui/detection";
 import { ReflectLintFeedback } from "../feedbacks";
 import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
 import { MissingTextStyleGeneralLinter } from "../text.lint/missing-text-style.lint";
@@ -96,11 +95,6 @@ export class LintRunner {
     if (textStyleFeedbacks) {
       feedbacks.push(...textStyleFeedbacks);
     }
-
-    // test
-    const detected = detect(node);
-    console.warn("detected", detected);
-    // test
 
     return feedbacks;
   }
