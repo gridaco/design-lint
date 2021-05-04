@@ -2,7 +2,7 @@ import {
   ReflectSceneNode,
   ReflectSceneNodeType,
   ReflectTextNode,
-} from "@bridged.xyz/design-sdk/lib/nodes";
+} from "@design-sdk/core/nodes";
 import { ReflectLintFeedback } from "../feedbacks";
 import { MissingTextStyleWarning } from "../feedbacks/text-style.feedback";
 import { AtomLinter } from "../linter/lint.atom";

@@ -1,4 +1,4 @@
-import { IReflectNodeReference } from "@bridged.xyz/design-sdk/lib/nodes/lignt";
+import { IReflectNodeReference } from "@design-sdk/core/nodes/lignt";
 import { ReflectLintFeedback } from ".";
 
 export class MissingStyleFeedback extends ReflectLintFeedback {

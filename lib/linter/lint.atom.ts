@@ -1,4 +1,4 @@
-import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
+import { ReflectSceneNode } from "@design-sdk/core/nodes";
 import { ReflectLintFeedback } from "../feedbacks/feedback";
 import { Linter } from "./lint.base";
 

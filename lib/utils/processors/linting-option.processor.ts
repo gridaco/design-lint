@@ -1,4 +1,4 @@
-import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
+import { ReflectSceneNode } from "@design-sdk/core/nodes";
 import { LintOption, LintRunnerRange } from "../../linter/lint.option";
 import { BaseProcessor } from "./base.processor";
 

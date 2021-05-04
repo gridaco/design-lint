@@ -1,7 +1,7 @@
+import { ReflectSceneNode } from "@design-sdk/core/nodes";
 import InvalidCharacterLint from "./invalid-character.lint";
 import lintDefaultNameUsage from "./default-name.lint";
 import { ReflectLintFeedback } from "../feedbacks/feedback";
-import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
 import { GenerallLinter } from "../linter/lint.general";
 
 export function lintGeneralLayerNamingConvention(
