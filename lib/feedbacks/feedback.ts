@@ -1,4 +1,4 @@
-import { IReflectNodeReference } from "@bridged.xyz/design-sdk/lib/nodes/lignt";
+import { IReflectNodeReference } from "@design-sdk/core/nodes/lignt";
 
 export class ReflectLintFeedback extends Error {
   userMessage: string;

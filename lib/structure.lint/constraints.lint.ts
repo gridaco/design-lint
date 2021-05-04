@@ -1,10 +1,11 @@
+// TODO - make it reflect
+import { constraints } from "@design-sdk/core";
 import { LintResults, ReflectLintFeedback } from "../feedbacks/feedback";
 import { MissingConstraintsWarning } from "../feedbacks/constraints.feedback";
 import {
   ReflectConstraintMixin,
   ReflectChildrenMixin,
-} from "@bridged.xyz/design-sdk/lib/nodes";
-import { constraints } from "@bridged.xyz/design-sdk";
+} from "@design-sdk/core/nodes";
 
 type Lint = boolean | LintResult;
 

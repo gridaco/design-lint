@@ -1,7 +1,7 @@
 import { lintMissingConstraints } from "../structure.lint/constraints.lint";
 import { lintGeneralLayerNamingConvention } from "../naming.lint";
 import { ReflectLintFeedback } from "../feedbacks";
-import { ReflectSceneNode } from "@bridged.xyz/design-sdk/lib/nodes";
+import { ReflectSceneNode } from "@design-sdk/core/nodes";
 import { MissingTextStyleGeneralLinter } from "../text.lint/missing-text-style.lint";
 import { LintRunnerRange, LintRunnerFilterOption } from "./lint.option";
 import { Linter } from "./lint.base";

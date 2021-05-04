@@ -7,7 +7,7 @@
     "prepublish": "tsc"
   },
   "dependencies": {
-    "@bridged.xyz/design-sdk": "0.1.0",
+    "@design-sdk/core": "0.0.0",
     "@reflect-ui/namings": "0.0.3"
   },
   "devDependencies": {
