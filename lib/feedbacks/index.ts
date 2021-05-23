@@ -1,16 +1,2 @@
-import { LintResults, ReflectLintFeedback } from "./feedback";
-
-export {
-    // base
-    ReflectLintFeedback,
-    LintResults
-    //
-
-    // naming
-
-    //
-
-    // constraints
-
-    //
-}
+export type { LintResults } from "./feedback";
+export { ReflectLintFeedback } from "./feedback";
