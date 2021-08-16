@@ -11,7 +11,8 @@ export class ConstraintsFeedback extends ReflectLintFeedback {
   ) {
     super(
       target,
-      `target node "${target.name}" in parent "${parent.name}" is visually aligned ${is}, but the constraint is set to ${but}. You might want to set it to ${so}.`
+      `target node "${target.name}" in parent "${parent.name}" is visually aligned ${is}, but the constraint is set to ${but}. You might want to set it to ${so}.`,
+      "warning"
     );
   }
 }

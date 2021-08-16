@@ -3,7 +3,7 @@ import { ReflectLintFeedback } from ".";
 
 export class MissingStyleFeedback extends ReflectLintFeedback {
   constructor(target: IReflectNodeReference, message: string) {
-    super(target, message);
+    super(target, message, "warning");
   }
 }
 

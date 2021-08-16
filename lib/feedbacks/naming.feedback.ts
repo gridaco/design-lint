@@ -3,7 +3,7 @@ import { ReflectLintFeedback } from "./feedback";
 
 export class NamingFeedback extends ReflectLintFeedback {
   constructor(target: IReflectNodeReference, message: string) {
-    super(target, message);
+    super(target, message, "error");
   }
 }
 
