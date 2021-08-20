@@ -1,2 +1,2 @@
-export type { LintResults } from "./feedback";
-export { ReflectLintFeedback, ReflectLintFeedbackLevel } from "./feedback";
+export type { LintResults, ReflectLintFeedbackLevel } from "./feedback";
+export { ReflectLintFeedback } from "./feedback";
