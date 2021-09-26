@@ -1,4 +1,4 @@
-import { IReflectNodeReference } from "@design-sdk/core/nodes/lignt";
+import { IReflectNodeReference } from "@design-sdk/figma-node";
 
 export type ReflectLintFeedbackLevel = "error" | "warning" | "suggestion";
 export class ReflectLintFeedback extends Error {

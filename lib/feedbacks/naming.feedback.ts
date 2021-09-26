@@ -1,4 +1,4 @@
-import { IReflectNodeReference } from "@design-sdk/core/nodes/lignt";
+import { IReflectNodeReference } from "@design-sdk/figma-node";
 import { ReflectLintFeedback } from "./feedback";
 
 export class NamingFeedback extends ReflectLintFeedback {

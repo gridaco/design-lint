@@ -1,4 +1,4 @@
-import { ReflectSceneNode } from "@design-sdk/core/nodes";
+import { ReflectSceneNode } from "@design-sdk/figma-node";
 import InvalidCharacterLint from "./invalid-character.lint";
 import lintDefaultNameUsage from "./default-name.lint";
 import { ReflectLintFeedback } from "../feedbacks/feedback";

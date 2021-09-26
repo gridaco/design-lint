@@ -1,4 +1,4 @@
-import { ReflectSceneNode } from "@design-sdk/core/nodes";
+import { ReflectSceneNode } from "@design-sdk/figma-node";
 import { Invalid, ReflectValidation, Valid } from "../../feedbacks/validation";
 
 export function vaidateLintableNodeSize(

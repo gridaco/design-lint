@@ -5,7 +5,7 @@ import { MissingConstraintsWarning } from "../feedbacks/constraints.feedback";
 import {
   ReflectConstraintMixin,
   ReflectChildrenMixin,
-} from "@design-sdk/core/nodes";
+} from "@design-sdk/figma-node";
 
 type Lint = boolean | LintResult;
 

@@ -1,4 +1,4 @@
-import { ReflectSceneNode } from "@design-sdk/core/nodes";
+import { ReflectSceneNode } from "@design-sdk/figma-node";
 import { LintingOptionProcessor } from "../utils/processors";
 import { Linter } from "./lint.base";
 import { LintOption } from "./lint.option";

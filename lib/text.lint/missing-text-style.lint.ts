@@ -2,7 +2,7 @@ import {
   ReflectSceneNode,
   ReflectSceneNodeType,
   ReflectTextNode,
-} from "@design-sdk/core/nodes";
+} from "@design-sdk/figma-node";
 import { ReflectLintFeedback } from "../feedbacks";
 import { MissingTextStyleWarning } from "../feedbacks/text-style.feedback";
 import { AtomLinter } from "../linter/lint.atom";

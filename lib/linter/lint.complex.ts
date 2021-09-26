@@ -1,4 +1,4 @@
-import { ReflectSceneNode } from "@design-sdk/core/nodes";
+import { ReflectSceneNode } from "@design-sdk/figma-node";
 import { ReflectLintFeedback } from "../feedbacks/feedback";
 import { Linter } from "./lint.base";
 
