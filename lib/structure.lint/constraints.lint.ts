@@ -34,11 +34,11 @@ export function lintMissingConstraints(
 
         // INSTANCE, COMPONENT, FRAME are supported. GROUP support is blocked by https://github.com/figma/plugin-typings/issues/9
         if (
-          childNode.type == "INSTANCE" ||
-          childNode.type == "COMPONENT" ||
-          childNode.type == "FRAME" ||
-          childNode.type == "RECTANGLE" ||
-          childNode.type == "GROUP"
+          childNode.origin == "INSTANCE" ||
+          childNode.origin == "COMPONENT" ||
+          childNode.origin == "FRAME" ||
+          childNode.origin == "RECTANGLE" ||
+          childNode.origin == "GROUP"
         ) {
           const xAlign: constraints.LCRS = childNode.constraintLcrs;
           const target = childNode.copyAsSnippet();
