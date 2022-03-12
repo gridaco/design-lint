@@ -6,7 +6,7 @@ import { InvalidCharacterInNameError } from "../feedbacks/naming.feedback";
  *
  * @param target the name of element
  */
-export default function InvalidCharacterLint(
+export default function invalidCharacterLint(
   target: ReflectSceneNode
 ): ReflectLintFeedback {
   // list of invalid characters

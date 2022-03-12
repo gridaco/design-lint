@@ -1,6 +1,7 @@
 import { ReflectSceneNode } from "@design-sdk/figma-node";
-import InvalidCharacterLint from "./invalid-character.lint";
+import invalidCharacterLint from "./invalid-character.lint";
 import lintDefaultNameUsage from "./default-name.lint";
+import lintTextDefaultNameUsage from "./text-default-name.lint";
 import { ReflectLintFeedback } from "../feedbacks/feedback";
 import { GenerallLinter } from "../linter/lint.general";
 
@@ -9,11 +10,15 @@ export function lintGeneralLayerNamingConvention(
 ): Array<ReflectLintFeedback> {
   // run linting by priority
   const feedbacks: Array<ReflectLintFeedback> = [];
-  feedbacks.push(InvalidCharacterLint(target));
+  feedbacks.push(invalidCharacterLint(target));
   feedbacks.push(lintDefaultNameUsage(target));
-  return feedbacks.filter((i) => {
-    return i !== undefined;
-  });
+
+  // text specific linting
+  if (target.type === "TEXT") {
+    feedbacks.push(lintTextDefaultNameUsage(target));
+  }
+
+  return feedbacks.filter(Boolean);
 }
 
 export class NamingConventionGeneralLinter extends GenerallLinter {
