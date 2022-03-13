@@ -1,7 +1,7 @@
-import { lintMissingConstraints } from "../structure.lint/constraints.lint";
+import type { ReflectLintFeedback } from "../feedbacks";
+import type { ReflectSceneNode } from "@design-sdk/figma-node";
 import { lintGeneralLayerNamingConvention } from "../naming.lint";
-import { ReflectLintFeedback } from "../feedbacks";
-import { ReflectSceneNode } from "@design-sdk/figma-node";
+import { lintGroupUsage, lintMissingConstraints } from "../structure.lint";
 import { MissingTextStyleGeneralLinter } from "../text.lint/missing-text-style.lint";
 import { LintRunnerRange, LintRunnerFilterOption } from "./lint.option";
 import { Linter } from "./lint.base";
@@ -80,6 +80,9 @@ export class LintRunner {
         feedbacks.push(...constraintsWarnings);
       }
 
+      // group usage lint
+      feedbacks.push(lintGroupUsage(node));
+
       // naming lints
       const namingFeedbacks = lintGeneralLayerNamingConvention(node);
       if (Array.isArray(namingFeedbacks)) {
@@ -96,6 +99,6 @@ export class LintRunner {
       feedbacks.push(...textStyleFeedbacks);
     }
 
-    return feedbacks;
+    return feedbacks.filter(Boolean);
   }
 }
