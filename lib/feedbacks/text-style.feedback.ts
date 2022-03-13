@@ -15,3 +15,8 @@ export class MissingTextColorStyleWarning extends MissingColorStyleFeedback {
     super(target, `missing text color style on text node "${target.name}"`);
   }
 }
+
+/**
+ * @example the text layer "Hello world" is using more than 4 colors in a single layer. Recommanded to split the text by color usages.
+ */
+export class TooManyColorsInTextWarning {}

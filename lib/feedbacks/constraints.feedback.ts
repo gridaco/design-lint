@@ -47,3 +47,7 @@ export class MixedContraintsWarning extends ConstraintsFeedback {
     super(target, parent, is, but, so);
   }
 }
+
+export class AvoidUsingScaleWarning extends ConstraintsFeedback {}
+
+export class AvoidUsingCenterWarning extends ConstraintsFeedback {}

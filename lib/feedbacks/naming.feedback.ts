@@ -10,11 +10,15 @@ export class NamingFeedback extends ReflectLintFeedback {
   }
 }
 
+/**
+ * @example
+ * - the given name "text!" contains invalid token "!".
+ */
 export class InvalidCharacterInNameError extends NamingFeedback {
   constructor(target: IReflectNodeReference, invalidToken: string) {
     super(
       target,
-      `the given name "${target.name}" contains invalid token ${invalidToken}.`
+      `the given name "${target.name}" contains invalid token "${invalidToken}."`
     );
   }
 }
@@ -36,6 +40,18 @@ export class DefaultTextNameUsageWarning extends NamingFeedback {
     super(
       target,
       `the text layer "${target.name}" is using a name from its content. Recommanded to assign a explicit semantic name.`
+    );
+  }
+}
+
+/**
+ * @example the root frame "Frame 12" is using a vague name. Recommanded to assign a semantic name for a page / component.
+ */
+export class DefaultRootFrameNameUsageWarning extends NamingFeedback {
+  constructor(target: IReflectNodeReference) {
+    super(
+      target,
+      `the root frame "${target.name}" is using a vague name. Recommanded to assign a semantic name for a page / component.`
     );
   }
 }
