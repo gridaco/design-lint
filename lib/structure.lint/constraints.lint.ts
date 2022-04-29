@@ -1,5 +1,5 @@
 // TODO - make it reflect
-import { constraints } from "@design-sdk/core";
+import { constraints } from "@design-sdk/core/features";
 import { LintResults, ReflectLintFeedback } from "../feedbacks/feedback";
 import { MissingConstraintsWarning } from "../feedbacks/constraints.feedback";
 import {
