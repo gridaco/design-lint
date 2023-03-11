@@ -1,17 +1,11 @@
 // TODO - make it reflect
-import { constraints } from "@design-sdk/core/features";
+import { LCRS } from "@design-sdk/figma-utils";
 import { LintResults, ReflectLintFeedback } from "../feedbacks/feedback";
 import { MissingConstraintsWarning } from "../feedbacks/constraints.feedback";
 import {
   ReflectConstraintMixin,
   ReflectChildrenMixin,
 } from "@design-sdk/figma-node";
-
-type Lint = boolean | LintResult;
-
-interface LintResult {
-  error: Error;
-}
 
 /**
  * Iterates throught the children, finds the missing constraints. It does not inspect the givven node itself.
@@ -40,7 +34,7 @@ export function lintMissingConstraints(
           childNode.origin == "RECTANGLE" ||
           childNode.origin == "GROUP"
         ) {
-          const xAlign: constraints.LCRS = childNode.constraintLcrs;
+          const xAlign: LCRS = childNode.constraintLcrs;
           const target = childNode.copyAsSnippet();
           console.warn(childNode.name, visualPositioning, xAlign);
           switch (visualPositioning) {

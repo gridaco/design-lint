@@ -1,4 +1,4 @@
-import type { IReflectNodeReference } from "@design-sdk/core";
+import type { IReflectNodeReference } from "@design-sdk/figma-node";
 import { AvoidUsingGroupFeedback } from "../feedbacks/avoid-using-group.feedback";
 
 export function lintGroupUsage(
