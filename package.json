@@ -7,7 +7,7 @@
     "prepublish": "tsc"
   },
   "dependencies": {
-    "@design-sdk/core": "0.0.0",
+    "@design-sdk/core": "*",
     "@reflect-ui/namings": "0.0.3"
   },
   "devDependencies": {
